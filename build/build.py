@@ -233,10 +233,8 @@ about += f"""<section class="section"><div class="wrap narrow">
 <h2 style="margin-top:0">Company details</h2>
 <table class="facts"><tbody>
 <tr><th scope="row">Company name</th><td>Pensero Ltd</td></tr>
-<tr><th scope="row">Legal form</th><td>Private company limited by shares {ph("confirm")}</td></tr>
 <tr><th scope="row">Registered in</th><td>Republic of Cyprus</td></tr>
 <tr><th scope="row">Registration number</th><td>{REGNO}</td></tr>
-<tr><th scope="row">Date of incorporation</th><td>{ph("date of incorporation")}</td></tr>
 <tr><th scope="row">Registered office</th><td>{ADDRESS}</td></tr>
 <tr><th scope="row">Director</th><td>Eduard Denk</td></tr>
 <tr><th scope="row">Areas of activity</th><td>Consulting for Amazon e-commerce businesses; development and licensing of software</td></tr>
@@ -271,7 +269,6 @@ legal += f"""<section class="section"><div class="wrap narrow">
 <h2 style="margin-top:0">Service provider</h2>
 <table class="facts"><tbody>
 <tr><th scope="row">Company name</th><td>Pensero Ltd</td></tr>
-<tr><th scope="row">Legal form</th><td>Private company limited by shares {ph("confirm")}</td></tr>
 <tr><th scope="row">Registered office</th><td>{ADDRESS}</td></tr>
 <tr><th scope="row">Email</th><td>{EMAIL}</td></tr>
 <tr><th scope="row">Telephone</th><td>{ph("telephone number, optional")}</td></tr>
