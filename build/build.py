@@ -270,7 +270,6 @@ legal += f"""<section class="section"><div class="wrap narrow">
 <tr><th scope="row">Company name</th><td>Pensero Ltd</td></tr>
 <tr><th scope="row">Registered office</th><td>{ADDRESS}</td></tr>
 <tr><th scope="row">Email</th><td>{EMAIL}</td></tr>
-<tr><th scope="row">Telephone</th><td>{ph("telephone number, optional")}</td></tr>
 <tr><th scope="row">Director</th><td>Eduard Denk</td></tr>
 <tr><th scope="row">Company register</th><td>Department of Registrar of Companies and Intellectual Property, Ministry of Energy, Commerce and Industry, Nicosia</td></tr>
 <tr><th scope="row">Registration number</th><td>{REGNO}</td></tr>
@@ -294,7 +293,7 @@ page("legal-notice.html","Legal Notice","Legal notice of Pensero Ltd, Cyprus.",l
 # ---------------- Privacy ----------------
 priv = head("Legal","Privacy Notice","Information on the processing of personal data in accordance with Articles 13 and 14 of the General Data Protection Regulation (EU) 2016/679 (GDPR).")
 priv += f"""<section class="section"><div class="wrap narrow">
-<p>Last updated: {ph("date of publication")}</p>
+<p>Last updated: 15 October 2026</p>
 
 <h2>1. Controller</h2>
 <p>Pensero Ltd, {ADDRESS}. Email: {EMAIL}.</p>
@@ -304,14 +303,16 @@ priv += f"""<section class="section"><div class="wrap narrow">
 <p>This website is a static website. It does not use cookies, analytics or tracking tools, social media plug-ins, externally loaded fonts or scripts, or contact forms. Personal data is processed only to the extent described below.</p>
 
 <h2>3. Hosting and server log files</h2>
-<p>This website is hosted by {ph("hosting provider, name and address")}. When the website is accessed, the hosting provider&rsquo;s servers automatically process technical data transmitted by the browser in order to deliver the website and to ensure its security and stability. This may include the IP address, date and time of the request, the page requested, the referring URL, the browser type and version and the operating system.</p>
-<p>Legal basis: Article 6(1)(f) GDPR (legitimate interest in the secure and reliable provision of the website). Log data is retained by the hosting provider for a limited period {ph("retention period per hosting provider")} and then deleted. The hosting provider acts as processor on behalf of Pensero Ltd. Where the provider processes data outside the European Economic Area, this is based on an adequacy decision or on standard contractual clauses pursuant to Article 46 GDPR.</p>
+<p>This website is hosted by GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA (GitHub Pages). When the website is accessed, the hosting provider&rsquo;s servers automatically process technical data transmitted by the browser in order to deliver the website and to ensure its security and stability. This may include the IP address, date and time of the request, the page requested, the referring URL, the browser type and version and the operating system.</p>
+<p>Legal basis: Article 6(1)(f) GDPR (legitimate interest in the secure and reliable provision of the website). Log data is retained by the hosting provider for a limited period in accordance with the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a> and then deleted. The hosting provider acts as processor on behalf of Pensero Ltd. Where the provider processes data outside the European Economic Area, this is based on an adequacy decision or on standard contractual clauses pursuant to Article 46 GDPR.</p>
 
 <h2>4. Contact by email</h2>
 <p>If you contact Pensero Ltd by email, the data you provide (such as your name, email address and the content of your message) is processed in order to deal with your enquiry. Legal basis: Article 6(1)(b) GDPR where the enquiry relates to a contract or pre-contractual measures, otherwise Article 6(1)(f) GDPR (legitimate interest in responding to enquiries). The data is deleted once it is no longer required for this purpose, unless statutory retention obligations apply.</p>
 
 <h2>5. Recipients</h2>
-<p>Personal data is not sold or transferred to third parties. Recipients are limited to the hosting provider and the email service provider used by Pensero Ltd {ph("email provider")}, acting as processors, and to authorities where required by law.</p>
+<p>Personal data is not sold or transferred to third parties. Recipients are limited to the hosting provider and the email service provider used by Pensero Ltd (Microsoft Ireland Operations Limited, Microsoft 365), acting as processors, and to authorities where required by law.</p>
+<h2>Transfers outside the EU</h2>
+<p>GitHub, Inc. is located in the United States and is certified under the EU-U.S. Data Privacy Framework. Transfers are based on the European Commission&rsquo;s adequacy decision of 10 July 2023 (Article 45 GDPR) and, where applicable, standard contractual clauses (Article 46 GDPR).</p>
 
 <h2>6. Your rights</h2>
 <p>Under the GDPR you have the right of access (Article 15), rectification (Article 16), erasure (Article 17), restriction of processing (Article 18), data portability (Article 20) and the right to object to processing based on legitimate interests (Article 21). To exercise these rights, please contact Pensero Ltd at the email address above.</p>
