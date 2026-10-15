@@ -246,8 +246,7 @@ about += f"""<section class="section"><div class="wrap narrow">
 
 <h2>Management</h2>
 <p>Pensero Ltd was founded by Eduard Denk, who is the company&rsquo;s director. Before founding Pensero Ltd, he was Chief Operating Officer of an Amazon business, with responsibility for operations, sales growth and profitability over a period of three and a half years. He directs the company&rsquo;s consulting activities and the development of its software applications.</p>
-<p>Susanne Denk is responsible for back-office operations.</p>
-<p>Working languages: English, German and Russian.</p>
+<p>Working languages: English and German.</p>
 </div></section>"""
 page("about.html","About","Company profile of Pensero Ltd, Cyprus.",about,"about.html")
 
