@@ -6,8 +6,58 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "site")
 def ph(label):
     return f'<span class="ph">[PLACEHOLDER: {html.escape(label)}]</span>'
 
-EMAIL_HREF = "mailto:eddy@pensero.com"
-EMAIL = f'<a href="{EMAIL_HREF}">eddy@pensero.com</a>'
+def _ent(t): return "".join(f"&#{ord(c)};" for c in t)
+EMAIL_HREF = _ent("mailto:eddy@pensero.com")
+EMAIL = f'<a href="{EMAIL_HREF}">{_ent("eddy@pensero.com")}</a>'
+
+# ---------------- Assets: logo, favicon, decorative SVG ----------------
+import shutil
+ROOT = os.path.join(os.path.dirname(__file__), "..")
+ASSETS = os.path.join(OUT, "assets")
+os.makedirs(ASSETS, exist_ok=True)
+shutil.copyfile(os.path.join(ROOT, "logo-src.png"), os.path.join(ASSETS, "logo.png"))
+try:
+    from PIL import Image
+    lg = Image.open(os.path.join(ROOT, "logo-src.png")).convert("RGBA")
+    lg = lg.crop(lg.getbbox())
+    for size in (32, 180):
+        bg = Image.new("RGBA", (size, size), (22, 42, 66, 255))
+        pad = int(size*0.12); w = size-2*pad
+        im = lg.copy(); im.thumbnail((w, w), Image.LANCZOS)
+        bg.alpha_composite(im, ((size-im.width)//2, (size-im.height)//2))
+        bg.save(os.path.join(ASSETS, "favicon.png" if size == 32 else "apple-touch-icon.png"))
+except ImportError:
+    pass
+
+A = "#1f4e79"; A2 = "#3d8a8a"
+def svg(inner, vb="0 0 48 48", cls="icon"):
+    return (f'<svg class="{cls}" viewBox="{vb}" aria-hidden="true" focusable="false" fill="none" '
+            f'stroke="{A}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{inner}</svg>')
+ICONS = {
+ "inventory-forecast-tool.html": '<path d="M6 18l18-9 18 9v20l-18 9-18-9z" opacity=".35"/><path d="M6 18l18 9 18-9M24 27v20"/><path d="M12 38l7-6 6 3 11-10" stroke="#3d8a8a"/><circle cx="36" cy="25" r="1.8" fill="#3d8a8a" stroke="none"/>',
+ "launch-command-center.html": '<circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="11" opacity=".6"/><circle cx="24" cy="24" r="4" stroke="#3d8a8a"/><path d="M24 24l14-14M33 10h5v5" stroke="#3d8a8a"/>',
+ "sales-performance-dashboard.html": '<path d="M7 41h34M7 7v34"/><rect x="12" y="28" width="5" height="9"/><rect x="21" y="21" width="5" height="16"/><rect x="30" y="14" width="5" height="23"/><path d="M12 22l9-7 7 3 10-9" stroke="#3d8a8a"/>',
+ "voice-of-customer-dashboard.html": '<path d="M8 10h26a4 4 0 014 4v14a4 4 0 01-4 4H20l-8 7v-7H8a4 4 0 01-4-4V14a4 4 0 014-4z"/><path d="M12 18h18M12 24h12" stroke="#3d8a8a"/><path d="M42 20v14a4 4 0 01-4 4h-2" opacity=".5"/>',
+}
+CICONS = [
+ '<circle cx="21" cy="21" r="12"/><path d="M30 30l11 11"/><path d="M15 23l4-5 4 3 5-6" stroke="#3d8a8a"/>',
+ '<rect x="9" y="6" width="30" height="36" rx="2"/><path d="M15 15h18M15 22h18M15 29h11" stroke="#3d8a8a"/>',
+ '<path d="M6 30l8-10 9 6 9-14 10 8"/><path d="M6 40h36" opacity=".5"/><circle cx="32" cy="12" r="3" stroke="#3d8a8a"/>',
+ '<path d="M6 16l18-8 18 8-18 8z"/><path d="M6 24l18 8 18-8" opacity=".6"/><path d="M6 32l18 8 18-8" stroke="#3d8a8a"/>',
+ '<rect x="6" y="8" width="36" height="32" rx="2"/><path d="M6 16h36M14 24h6M14 31h6M26 24h8M26 31h8" stroke="#3d8a8a"/>',
+ '<circle cx="24" cy="10" r="4"/><circle cx="10" cy="38" r="4"/><circle cx="38" cy="38" r="4"/><path d="M24 14v10M24 24L12 35M24 24l12 11" stroke="#3d8a8a"/>',
+]
+def hero_svg():
+    g = "".join(f'<path d="M{x} 0V320" />' for x in range(0, 481, 40)) + "".join(f'<path d="M0 {y}H480" />' for y in range(0, 321, 40))
+    return (f'<svg class="hero-art" viewBox="0 0 480 320" aria-hidden="true" focusable="false" fill="none">'
+        f'<g stroke="#c9d3de" stroke-width="1" opacity=".7">{g}</g>'
+        f'<path d="M20 250 C 90 240, 120 180, 180 190 S 280 120, 330 130 S 420 70, 460 60" stroke="{A}" stroke-width="3"/>'
+        f'<path d="M20 280 C 100 270, 150 230, 210 235 S 310 190, 360 195 S 430 150, 460 140" stroke="{A2}" stroke-width="2.5" stroke-dasharray="6 7"/>'
+        + "".join(f'<rect x="{x}" y="{320-20-h}" width="22" height="{h}" fill="{A}" opacity=".12"/>' for x,h in ((60,60),(140,95),(220,120),(300,160),(380,200)))
+        + "".join(f'<circle cx="{x}" cy="{y}" r="6" fill="#fff" stroke="{A}" stroke-width="2.5"/>' for x,y in ((180,190),(330,130),(460,60)))
+        + f'<circle cx="360" cy="195" r="5" fill="{A2}"/></svg>')
+DIVIDER = ('<div class="divider" aria-hidden="true"><svg viewBox="0 0 120 12" focusable="false" fill="none" stroke="#1f4e79" stroke-width="1.5">'
+           '<path d="M0 6h48"/><circle cx="60" cy="6" r="4"/><circle cx="60" cy="6" r="1.5" fill="#3d8a8a" stroke="none"/><path d="M72 6h48"/></svg></div>')
 REGNO = "HE 421465"
 ADDRESS = "Agias Vryainis 12, Plot 495, 8560 Pegeia, Paphos, Cyprus"
 
@@ -34,12 +84,14 @@ def page(fname, title, desc, body, active):
 <meta name="description" content="{html.escape(desc)}">
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
 <div class="wrap">
-<a class="brand" href="index.html">Pensero <span>Ltd</span></a>
+<a class="brand" href="index.html"><img src="assets/logo.png" alt="Pensero" width="81" height="40"><span class="brand-text">Pensero <span>Ltd</span></span></a>
 <nav class="nav" aria-label="Main">
 <ul>
 {nav}
@@ -56,6 +108,7 @@ def page(fname, title, desc, body, active):
 <ul>
 <li><a href="legal-notice.html">Legal Notice</a></li>
 <li><a href="privacy.html">Privacy</a></li>
+<li>{EMAIL}</li>
 </ul>
 </div>
 </footer>
@@ -65,9 +118,10 @@ def page(fname, title, desc, body, active):
     with open(os.path.join(OUT, fname), "w", encoding="utf-8") as f:
         f.write(doc)
 
-def head(eyebrow, h1, lead=""):
+def head(eyebrow, h1, lead="", icon=None):
     lp = f"<p>{lead}</p>" if lead else ""
-    return f'<section class="page-head"><div class="wrap"><p class="eyebrow">{eyebrow}</p><h1>{h1}</h1>{lp}</div></section>'
+    ic = svg(icon, cls="icon icon-head") if icon else ""
+    return f'<section class="page-head"><div class="wrap head-flex">{ic}<div><p class="eyebrow">{eyebrow}</p><h1>{h1}</h1>{lp}</div></div></section>'
 
 # ---------------- Home ----------------
 apps_short = {
@@ -77,19 +131,21 @@ apps_short = {
  "voice-of-customer-dashboard.html":"Consolidates returns, refunds, customer comments and reviews to identify and track product and listing issues.",
 }
 home = f"""
-<section class="hero"><div class="wrap">
+<section class="hero"><div class="wrap hero-grid"><div>
 <p class="eyebrow">Pensero Ltd &middot; Cyprus</p>
 <h1>Consulting and software for Amazon e-commerce operations</h1>
 <p class="lead">Pensero Ltd is a Cyprus company that advises businesses selling on Amazon and develops proprietary software applications for e-commerce operations.</p>
-</div></section>
+</div>{hero_svg()}</div></section>
 <section class="section"><div class="wrap">
 <div class="grid grid-2">
 <div class="card">
+{svg(CICONS[5],cls="icon icon-lg")}
 <h2>Consulting</h2>
 <p>Operational and commercial advisory for Amazon businesses: product selection and development, listings, advertising and launches, inventory and logistics, controlling and financial analysis, organisation and processes.</p>
 <p><a class="more" href="consulting.html">Consulting services</a></p>
 </div>
 <div class="card">
+{svg(CICONS[4],cls="icon icon-lg")}
 <h2>Software</h2>
 <p>Pensero Ltd has developed four software applications covering inventory planning, product launches and advertising, sales reporting and customer feedback analysis. The software is licensed to business customers under licence agreements.</p>
 <p><a class="more" href="software.html">Software overview</a></p>
@@ -99,7 +155,7 @@ home = f"""
 <section class="section"><div class="wrap">
 <h2 style="margin-top:0">Software applications</h2>
 <div class="grid">
-{''.join(f'<div class="card"><h3>{t}</h3><p>{apps_short[h]}</p><p><a class="more" href="{h}">Details</a></p></div>' for h,t in APPS)}
+{''.join(f'<div class="card">{svg(ICONS[h])}<h3>{t}</h3><p>{apps_short[h]}</p><p><a class="more" href="{h}">Details</a></p></div>' for h,t in APPS)}
 </div>
 </div></section>
 """
@@ -129,8 +185,8 @@ areas = [
 cons = head("Consulting","Consulting services",
  "Pensero Ltd advises businesses selling on Amazon marketplaces on operational, commercial and financial matters. The services are grouped into the following areas.")
 cons += '<section class="section"><div class="wrap"><div class="grid grid-2">'
-for t,d,items in areas:
-    cons += f'<div class="card"><h2>{t}</h2><p>{d}</p><ul>' + "".join(f"<li>{i}</li>" for i in items) + "</ul></div>"
+for i,(t,d,items) in enumerate(areas):
+    cons += f'<div class="card">{svg(CICONS[i])}<h2>{t}</h2><p>{d}</p><ul>' + "".join(f"<li>{i}</li>" for i in items) + "</ul></div>"
 cons += '</div></div></section>'
 page("consulting.html","Consulting","Consulting services of Pensero Ltd for Amazon e-commerce businesses.",cons,"consulting.html")
 
@@ -139,8 +195,8 @@ sw = head("Software","Software applications",
  "Pensero Ltd has developed and owns the following four software applications for Amazon e-commerce operations. The software is licensed to business customers under licence agreements.")
 sw += '<section class="section"><div class="wrap"><div class="grid grid-2">'
 for h,t in APPS:
-    sw += f'<div class="card"><h2>{t}</h2><p>{apps_short[h]}</p><p><a class="more" href="{h}">Application details</a></p></div>'
-sw += '</div>'
+    sw += f'<div class="card">{svg(ICONS[h])}<h2>{t}</h2><p>{apps_short[h]}</p><p><a class="more" href="{h}">Application details</a></p></div>'
+sw += '</div>' + DIVIDER
 sw += """<h2>Common characteristics</h2>
 <ul>
 <li>Web applications developed by Pensero Ltd.</li>
@@ -154,7 +210,7 @@ page("software.html","Software","Software applications developed by Pensero Ltd:
 
 # ---------------- App pages ----------------
 def app_page(fname, name, summary, description, functions, tech, scale, status):
-    b = head("Software", name, summary)
+    b = head("Software", name, summary, ICONS[fname])
     b += '<section class="section"><div class="wrap narrow">'
     b += "<h2 style=\"margin-top:0\">Description</h2>" + "".join(f"<p>{p}</p>" for p in description)
     b += '<h2>Core functions</h2><ul class="feature-list">' + "".join(f"<li><strong>{a}:</strong> {c}</li>" for a,c in functions) + "</ul>"
