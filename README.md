@@ -1,1 +1,1 @@
-# pensero-website
+Website of Pensero Ltd, Cyprus

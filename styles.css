@@ -1,0 +1,84 @@
+/* Pensero Ltd – site stylesheet. No external fonts, no scripts, no animations. */
+:root{
+  --text:#1d2329; --muted:#5a6470; --line:#dfe3e8; --bg:#ffffff; --bg-alt:#f5f6f8;
+  --accent:#1f4e79; --accent-dark:#163a5a; --ph-bg:#fff4cc; --ph-text:#6b4e00;
+  --max:72rem; --narrow:46rem;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1.0625rem;line-height:1.6;color:var(--text);background:var(--bg)}
+a{color:var(--accent)}
+a:hover{color:var(--accent-dark)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+img{max-width:100%;height:auto}
+h1,h2,h3{line-height:1.25;font-weight:600;color:#11171d;margin:0 0 .6em}
+h1{font-size:clamp(1.75rem,1.3rem + 1.8vw,2.5rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.3rem,1.1rem + .8vw,1.65rem);margin-top:2rem}
+h3{font-size:1.15rem;margin-top:1.5rem}
+p,ul,ol,dl{margin:0 0 1rem}
+ul{padding-left:1.25rem}
+li{margin-bottom:.35rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:.5rem 1rem;z-index:10}
+.skip:focus{left:1rem}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+.narrow{max-width:var(--narrow)}
+
+/* Header */
+.site-header{border-bottom:1px solid var(--line);background:#fff}
+.site-header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 2rem;padding-top:1rem;padding-bottom:1rem}
+.brand{font-weight:700;font-size:1.2rem;color:#11171d;text-decoration:none;letter-spacing:.01em}
+.brand span{color:var(--accent)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.25rem 1.5rem}
+.nav li{margin:0}
+.nav a{text-decoration:none;color:var(--muted);font-size:.98rem;padding:.25rem 0;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--text)}
+.nav a[aria-current="page"]{color:var(--text);border-bottom-color:var(--accent)}
+
+/* Sections */
+main{display:block}
+.hero{padding:4rem 0 3rem;border-bottom:1px solid var(--line);background:var(--bg-alt)}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:44rem}
+.page-head{padding:3rem 0 2rem;border-bottom:1px solid var(--line);background:var(--bg-alt)}
+.page-head p{color:var(--muted);max-width:44rem;font-size:1.1rem;margin-bottom:0}
+.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;font-weight:600;color:var(--accent);margin-bottom:.5rem}
+.section{padding:2.5rem 0 3rem}
+.section + .section{border-top:1px solid var(--line)}
+
+/* Grid / cards */
+.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
+.card{border:1px solid var(--line);border-radius:4px;padding:1.5rem;background:#fff}
+.card h2,.card h3{margin-top:0}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.card .more{font-weight:600;text-decoration:none}
+.card .more:hover{text-decoration:underline}
+
+/* Facts table */
+.facts{width:100%;border-collapse:collapse;margin:0 0 1.5rem}
+.facts th,.facts td{text-align:left;vertical-align:top;padding:.6rem .75rem .6rem 0;border-bottom:1px solid var(--line)}
+.facts th{width:34%;font-weight:600;color:var(--muted)}
+.status{border-left:3px solid var(--accent);padding:.75rem 1rem;background:var(--bg-alt);margin:1.5rem 0}
+.feature-list li{margin-bottom:.6rem}
+.feature-list strong{color:#11171d}
+.backlink{display:inline-block;margin-top:1rem}
+
+/* Placeholder marker – visible on purpose */
+.ph{background:var(--ph-bg);color:var(--ph-text);padding:0 .25em;border-radius:2px;font-weight:600;white-space:normal}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--line);background:var(--bg-alt);color:var(--muted);font-size:.92rem;padding:1.5rem 0;margin-top:2rem}
+.site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem}
+.site-footer ul{list-style:none;margin:0;padding:0;display:flex;gap:1.25rem}
+.site-footer li{margin:0}
+.site-footer a{color:var(--muted)}
+.site-footer p{margin:0}
+
+@media (max-width:40rem){
+  .hero{padding:2.5rem 0 2rem}
+  .facts th{width:40%}
+}
+@media print{
+  .site-header .nav,.skip{display:none}
+  body{font-size:11pt}
+  a{color:inherit}
+}
