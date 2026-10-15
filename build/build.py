@@ -16,6 +16,7 @@ ROOT = os.path.join(os.path.dirname(__file__), "..")
 ASSETS = os.path.join(OUT, "assets")
 os.makedirs(ASSETS, exist_ok=True)
 shutil.copyfile(os.path.join(ROOT, "logo-src.png"), os.path.join(ASSETS, "logo.png"))
+shutil.copyfile(os.path.join(ROOT, "assets-cyprus.jpg"), os.path.join(ASSETS, "cyprus-coast.jpg"))
 try:
     from PIL import Image
     lg = Image.open(os.path.join(ROOT, "logo-src.png")).convert("RGBA")
@@ -300,6 +301,7 @@ about += f"""<section class="section"><div class="wrap narrow">
 <p><strong>Consulting.</strong> Pensero Ltd advises businesses selling on Amazon marketplaces on product selection and development, listings, advertising, inventory and logistics, controlling and internal organisation. <a href="consulting.html">Consulting services</a></p>
 <p><strong>Software.</strong> Pensero Ltd has developed four web applications for inventory planning, product launches and advertising, sales reporting and customer feedback analysis. The software is licensed to business customers under licence agreements. <a href="software.html">Software applications</a></p>
 
+<figure class="about-photo"><img src="assets/cyprus-coast.jpg" alt="Coastline near Paphos, Cyprus, at sunset" width="1800" height="1350" loading="lazy"><figcaption>Paphos district, Cyprus &ndash; home of Pensero Ltd</figcaption></figure>
 <h2>Management</h2>
 <p>Pensero Ltd was founded by Eduard Denk, who is the company&rsquo;s director. Before founding Pensero Ltd, he was Chief Operating Officer of an Amazon business, with responsibility for operations, sales growth and profitability over a period of three and a half years. He directs the company&rsquo;s consulting activities and the development of its software applications.</p>
 <p>Working languages: English and German.</p>
