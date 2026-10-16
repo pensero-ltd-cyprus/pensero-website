@@ -36,7 +36,7 @@ def svg(inner, vb="0 0 48 48", cls="icon"):
             f'stroke="{A}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{inner}</svg>')
 ICONS = {
  "inventory-forecast-tool.html": '<path d="M6 18l18-9 18 9v20l-18 9-18-9z" opacity=".35"/><path d="M6 18l18 9 18-9M24 27v20"/><path d="M12 38l7-6 6 3 11-10" stroke="#3d8a8a"/><circle cx="36" cy="25" r="1.8" fill="#3d8a8a" stroke="none"/>',
- "launch-command-center.html": '<circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="11" opacity=".6"/><circle cx="24" cy="24" r="4" stroke="#3d8a8a"/><path d="M24 24l14-14M33 10h5v5" stroke="#3d8a8a"/>',
+ "launch-center.html": '<circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="11" opacity=".6"/><circle cx="24" cy="24" r="4" stroke="#3d8a8a"/><path d="M24 24l14-14M33 10h5v5" stroke="#3d8a8a"/>',
  "sales-performance-dashboard.html": '<path d="M7 41h34M7 7v34"/><rect x="12" y="28" width="5" height="9"/><rect x="21" y="21" width="5" height="16"/><rect x="30" y="14" width="5" height="23"/><path d="M12 22l9-7 7 3 10-9" stroke="#3d8a8a"/>',
  "voice-of-customer-dashboard.html": '<path d="M8 10h26a4 4 0 014 4v14a4 4 0 01-4 4H20l-8 7v-7H8a4 4 0 01-4-4V14a4 4 0 014-4z"/><path d="M12 18h18M12 24h12" stroke="#3d8a8a"/><path d="M42 20v14a4 4 0 01-4 4h-2" opacity=".5"/>',
 }
@@ -67,7 +67,7 @@ NAV = [("index.html","Home"),("consulting.html","Consulting"),("software.html","
 
 APPS = [
  ("inventory-forecast-tool.html","Inventory Forecast Tool"),
- ("launch-command-center.html","Launch Command Center"),
+ ("launch-center.html","Launch Center"),
  ("sales-performance-dashboard.html","Sales Performance Dashboard"),
  ("voice-of-customer-dashboard.html","Voice of Customer Dashboard"),
 ]
@@ -127,7 +127,7 @@ def head(eyebrow, h1, lead="", icon=None):
 # ---------------- Home ----------------
 apps_short = {
  "inventory-forecast-tool.html":"Inventory reconciliation, demand forecasting and replenishment planning across Amazon FBA, Amazon AWD and third-party warehouses.",
- "launch-command-center.html":"A single cockpit for product launches and advertising: sales, PPC, rankings and inventory in one place.",
+ "launch-center.html":"A single cockpit for product launches and advertising: sales, PPC, rankings and inventory in one place.",
  "sales-performance-dashboard.html":"Business intelligence for Amazon sales: full-funnel metrics, growth analytics and a complete P&amp;L down to each fee line.",
  "voice-of-customer-dashboard.html":"Consolidates returns, refunds, customer comments and reviews to identify and track product and listing issues.",
 }
@@ -207,7 +207,7 @@ sw += """<h2>Common characteristics</h2>
 </ul>
 <p>Enquiries regarding the software can be addressed to Pensero Ltd via the <a href="contact.html">contact page</a>.</p>
 </div></section>"""
-page("software.html","Software","Software applications developed by Pensero Ltd: Inventory Forecast Tool, Launch Command Center, Sales Performance Dashboard, Voice of Customer Dashboard.",sw,"software.html")
+page("software.html","Software","Software applications developed by Pensero Ltd: Inventory Forecast Tool, Launch Center, Sales Performance Dashboard, Voice of Customer Dashboard.",sw,"software.html")
 
 # ---------------- App pages ----------------
 def app_page(fname, name, summary, description, functions, tech, scale, status):
@@ -241,9 +241,9 @@ app_page("inventory-forecast-tool.html","Inventory Forecast Tool",
  "Approximately 1,300 SKU &times; marketplace combinations across Amazon US, Amazon Canada, Target and Australia.",
  "Developed by Pensero Ltd. In production since March 2026.")
 
-app_page("launch-command-center.html","Launch Command Center",
+app_page("launch-center.html","Launch Center",
  "A single cockpit for product launches that brings sales, advertising, rankings and inventory together.",
- ["The Launch Command Center supports the launch and ongoing management of products on Amazon. It combines sales, advertising, keyword ranking and inventory data in one interface, derives data-based recommendations for advertising campaigns and executes approved changes in a controlled and logged way.",
+ ["The Launch Center supports the launch and ongoing management of products on Amazon. It combines sales, advertising, keyword ranking and inventory data in one interface, derives data-based recommendations for advertising campaigns and executes approved changes in a controlled and logged way.",
   "It is used in the daily operations of a multi-marketplace Amazon brand."],
  [("Launch tracking","daily units, profit, best-seller rank, keyword ranks, price and advertising metrics per product; flags low stock, falling ranks and products requiring action."),
   ("PPC dashboard","per product, every campaign, keyword, search term and placement with the full change history; budget usage, Brand Analytics search volume and seasonality curves."),
